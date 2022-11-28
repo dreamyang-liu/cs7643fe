@@ -7,7 +7,10 @@
       <input type="file" @change="onFileChange" class="input_button"/>
     </div>
     <div>
-      <el-input placeholder="Please input style" v-model="text" style="width: 20vw; margin-top: 3vh;"></el-input>
+      <el-input placeholder="Title" v-model="title" style="width: 15vw; margin-top: 3vh;"></el-input>
+    </div>
+    <div>
+      <el-input placeholder="Description" type="textarea" v-model="text" style="width: 30vw; margin-top: 3vh;"></el-input>
     </div>
     <div>
       <el-button type="primary" @click="onSubmit" style="margin-top: 3vh;">Submit</el-button>
@@ -28,6 +31,7 @@ export default {
       image_src: null,
       image_file: null,
       text: '',
+      title: '',
       style_transfer_image: null,
     };
   },
@@ -48,6 +52,7 @@ export default {
       let formData = new FormData();
       formData.append('content_image', this.image_file);
       formData.append('style_text', this.text);
+      formData.append('style_title', this.title);
       return formData;
     },
     onSubmit() {
